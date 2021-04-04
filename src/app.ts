@@ -21,8 +21,8 @@ const options: cors.CorsOptions = {
   preflightContinue: true
 }
 
-app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(cors(options))
 

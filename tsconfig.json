@@ -30,10 +30,10 @@
     "baseUrl": "./",
     "paths": {
       "@config/*": ["./src/config/*"],
-      "@entity/*": ["./src/domain/entity/*"],
+      "@entities/*": ["./src/domain/entities/*"],
       "@enums/*": ["./src/domain/enums/*"],
       "@interfaces/*": ["./src/domain/interfaces/*"],
-      "@repository/*": ["./src/repository/*"],
+      "@repositories/*": ["./src/repositories/*"],
       "@useCases/*": ["./src/useCases/*"]
     }
   }
