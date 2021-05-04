@@ -1,5 +1,5 @@
 import express from 'express'
-import { userRoutes } from '@useCases/user'
+import { userRoutes } from './userRoutes'
 
 const apiRoutes = express.Router()
 

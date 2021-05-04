@@ -7,7 +7,7 @@
   "author": "Leonardo Dias Lissone",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon -r tsconfig-paths/register src/server.ts"
+    "dev": "nodemon -r tsconfig-paths/register src/external/server.ts"
   },
   "dependencies": {
     "@types/node": "^14.14.37",

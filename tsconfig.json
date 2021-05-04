@@ -29,12 +29,12 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
     "paths": {
-      "@config/*": ["./src/config/*"],
-      "@entities/*": ["./src/domain/entities/*"],
-      "@enums/*": ["./src/domain/enums/*"],
-      "@interfaces/*": ["./src/domain/interfaces/*"],
-      "@repositories/*": ["./src/repositories/*"],
-      "@useCases/*": ["./src/useCases/*"]
+      "@external/*": ["src/external/*"],
+      "@entities/*": ["src/entities/*"],
+      "@controllers/*": ["src/adapters/controllers/*"],
+      "@repositories/*": ["src/adapters/repositories/*"],
+      "@useCases/*": ["./src/useCases/*"],
+      "@shared/*": ["src/shared/*"],
     }
   }
 }
