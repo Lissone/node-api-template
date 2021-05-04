@@ -1,6 +1,7 @@
 # simple_api_mongodb
 
 Api simples em Typescript utilizando Express e Mongoose.
+
 Estrutura de pastas mesclada com aspectos da clean architecture e DDD.
 
 ### Requerimentos
@@ -18,7 +19,30 @@ Estrutura de pastas mesclada com aspectos da clean architecture e DDD.
 
 ### Endpoints
 
-![Get](https://img.shields.io/badge/-GET-008000?style=for-the-badge)&nbsp;
+![GET](https://img.shields.io/badge/-GET-70BB60?style=for-the-badge)&nbsp;
+```
+/api/v1/user/
+```
+
+![GET](https://img.shields.io/badge/-GET-70BB60?style=for-the-badge)&nbsp;
+```
+/api/v1/user/:email
+```
+
+![POST](https://img.shields.io/badge/-POST-2991B8?style=for-the-badge)&nbsp; 
+```
+/api/v1/user/
+```
+
+![PUT](https://img.shields.io/badge/-PUT-99768C?style=for-the-badge)&nbsp; 
+```
+/api/v1/user/:email
+```
+
+![DELETE](https://img.shields.io/badge/-DELETE-DF807E?style=for-the-badge)&nbsp; 
+```
+/api/v1/user/:email
+```
 
 ### Instalando Dependencias
 
