@@ -1,4 +1,5 @@
-import { mongoose } from '@config/dbConfig'
+import IUser from '@entities/IUser'
+import { mongoose } from 'src/external/database/dbConfig'
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -22,6 +23,4 @@ const UserSchema = new mongoose.Schema({
   }
 })
 
-const User = mongoose.model('User', UserSchema)
-
-export { User }
+export default mongoose.model<IUser>('User', UserSchema)

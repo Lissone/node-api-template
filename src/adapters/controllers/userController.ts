@@ -1,4 +1,4 @@
-import { IUserRepository } from '@interfaces/IUserRepository'
+import IUserRepository from '@useCases/user/IUserRepository'
 import { Request, Response } from 'express'
 
 export class UserController {
@@ -21,6 +21,7 @@ export class UserController {
   async getOne (req: Request, res: Response) : Promise<void> {
     try {
       const email = req.params.email
+
       const obj = await this.repository.getOne(email)
 
       if(!obj) {
@@ -37,6 +38,7 @@ export class UserController {
   async post (req: Request, res: Response) : Promise<void> {
     try {
       const body = req.body
+
       const obj = await await this.repository.post(body)
 
       res.status(201).send(obj)
@@ -47,7 +49,7 @@ export class UserController {
 
   async update (req: Request, res: Response) : Promise<void> {
     try {
-      const { email } = req.body
+      const email = req.params.email
 
       const exists = await this.repository.getOne(email)
 
@@ -58,7 +60,12 @@ export class UserController {
 
       const result = await this.repository.update(email, req.body)
 
-      res.status(200).json(result)
+      if(!result) {
+        res.sendStatus(500)
+        return
+      }
+
+      res.sendStatus(200)
     } catch (err) {
       res.status(500).json({ message: err.message })
     }
@@ -66,7 +73,7 @@ export class UserController {
 
   async delete (req: Request, res: Response) : Promise<void> {
     try {
-      const { email } = req.body
+      const email = req.params.email
 
       const exists = await this.repository.getOne(email)
 
@@ -77,7 +84,12 @@ export class UserController {
 
       const result = await this.repository.delete(email)
 
-      res.status(200).json(result)
+      if(!result) {
+        res.sendStatus(500)
+        return
+      }
+
+      res.sendStatus(200)
     } catch (err) {
       res.status(500).json({ message: err.message })
     }

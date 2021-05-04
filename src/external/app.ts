@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
-import { apiRoutes } from '@config/routes'
+import { apiRoutes } from 'src/external/routes'
 
 const app = express()
 
