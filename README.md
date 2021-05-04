@@ -1,5 +1,7 @@
 # simple_api_mongodb
+
 Api simples em Typescript utilizando Express e Mongoose.
+Estrutura de pastas mesclada com aspectos da clean architecture e DDD.
 
 ### Requerimentos
 
@@ -10,10 +12,13 @@ Api simples em Typescript utilizando Express e Mongoose.
 ### Dependências
 
 * Express
-* Cors
 * Dotenv
 * Nodemon
 * Mongoose
+
+### Endpoints
+
+![Get](https://img.shields.io/badge/-GET-008000?style=for-the-badge)&nbsp;
 
 ### Instalando Dependencias
 
