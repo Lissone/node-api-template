@@ -2,7 +2,7 @@
 
 Api simples em Typescript utilizando Express e Mongoose.
 
-Estrutura de pastas mesclada com aspectos da clean architecture e DDD.
+Estrutura de pastas baseada na clean architecture.
 
 ### Requerimentos
 
