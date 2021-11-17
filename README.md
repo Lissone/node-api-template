@@ -50,7 +50,7 @@ Template made in Typescript with Express and structured with an architecture bas
 
 ### Endpoints
 
-<strong>Base url: </strong><p>https://localhost:5000/api/v1</p>
+<strong>Base url: </strong>https://localhost:5000/api/v1
 
 ![GET](https://img.shields.io/badge/-GET-70BB60?style=for-the-badge)&nbsp;
 /user
