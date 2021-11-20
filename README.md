@@ -1,5 +1,5 @@
 <h1 align="center">
-  Simple api template with CRUD
+  Simple node api template with CRUD
 </h1>
 
 <p align="center">
@@ -12,18 +12,18 @@
 <br />
 <p align="center">
   <img src="https://img.shields.io/static/v1?label=license&message=MIT" alt="License">
-  <img src="https://img.shields.io/github/repo-size/Lissone/simple-api-template" alt="Repo size" />
-  <img src="https://img.shields.io/github/languages/top/Lissone/simple-api-template" alt="Top lang" />
-  <img src="https://img.shields.io/github/stars/Lissone/simple-api-template" alt="Stars repo" />
-  <img src="https://img.shields.io/github/forks/Lissone/simple-api-template" alt="Forks repo" />
-  <img src="https://img.shields.io/github/issues-pr/Lissone/simple-api-template" alt="Pull requests" >
-  <img src="https://img.shields.io/github/last-commit/Lissone/simple-api-template" alt="Last commit" />
+  <img src="https://img.shields.io/github/repo-size/Lissone/simple-node-api-template" alt="Repo size" />
+  <img src="https://img.shields.io/github/languages/top/Lissone/simple-node-api-template" alt="Top lang" />
+  <img src="https://img.shields.io/github/stars/Lissone/simple-node-api-template" alt="Stars repo" />
+  <img src="https://img.shields.io/github/forks/Lissone/simple-node-api-template" alt="Forks repo" />
+  <img src="https://img.shields.io/github/issues-pr/Lissone/simple-node-api-template" alt="Pull requests" >
+  <img src="https://img.shields.io/github/last-commit/Lissone/simple-node-api-template" alt="Last commit" />
 </p>
 
 <p align="center">
-  <a href="https://github.com/Lissone/simple-api-template/issues">Report bug</a>
+  <a href="https://github.com/Lissone/simple-node-api-template/issues">Report bug</a>
   ·
-  <a href="https://github.com/Lissone/simple-api-template/issues">Request feature</a>
+  <a href="https://github.com/Lissone/simple-node-api-template/issues">Request feature</a>
 </p>
 
 <br />
@@ -75,8 +75,8 @@ Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with
 You can use this project as a template for another one, or clone it on your pc using the command:
 
 ```bash
-git clone https://github.com/Lissone/simple-api-template.git
-cd simple_api_template
+git clone https://github.com/Lissone/simple-node-api-template.git
+cd simple-node-api-template
 ```
 
 Install dependencies using:

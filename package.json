@@ -1,8 +1,8 @@
 {
-  "name": "simple-api-template",
+  "name": "simple-node-api-template",
   "version": "1.0.0",
   "main": "src/server.ts",
-  "description": "Simple CRUD api template with mongodb",
+  "description": "Simple CRUD node api template with mongodb",
   "repository": "https://github.com/Lissone/simple-api-mongodb.git",
   "author": "Leonardo Dias Lissone Santomero <leonardo.lissonez@gmail.com>",
   "license": "MIT",
