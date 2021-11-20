@@ -1,10 +1,10 @@
 {
-  "name": "simple-api-mongodb",
-  "description": "Simple CRUD api with mongodb",
+  "name": "simple-api-template",
   "version": "1.0.0",
   "main": "src/server.ts",
+  "description": "Simple CRUD api template with mongodb",
   "repository": "https://github.com/Lissone/simple-api-mongodb.git",
-  "author": "Leonardo Dias Lissone",
+  "author": "Leonardo Dias Lissone Santomero <leonardo.lissonez@gmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "nodemon -r tsconfig-paths/register src/external/server.ts"
