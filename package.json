@@ -9,6 +9,12 @@
   "scripts": {
     "dev": "nodemon -r tsconfig-paths/register src/external/server.ts"
   },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "yarn pretty-quick --staged",
+      "yarn eslint --fix src --ext .ts"
+    ]
+  },
   "dependencies": {
     "@types/node": "^14.14.37",
     "body-parser": "^1.19.0",
@@ -29,8 +35,11 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.0.3",
     "nodemon": "^2.0.15",
     "prettier": "^2.4.1",
+    "pretty-quick": "^3.1.2",
     "ts-node": "^9.1.1",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^4.2.3"

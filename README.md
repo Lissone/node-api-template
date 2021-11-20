@@ -48,6 +48,7 @@ Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with
 - Express
 - Nodemon
 - Mongoose
+- Husky
 - Eslint (airbnb-config with another pessoal rules)
 - Prettier
 
