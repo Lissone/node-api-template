@@ -36,20 +36,20 @@ Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with
 
 ### Requirements
 
-* [Npm](https://www.npmjs.com/)
-* [Yarn](https://yarnpkg.com/)
-* [Nodejs](https://nodejs.org/en/)
-* [MongoDB](https://docs.mongodb.com/manual/installation/)
+- [Npm](https://www.npmjs.com/)
+- [Yarn](https://yarnpkg.com/)
+- [Nodejs](https://nodejs.org/en/)
+- [MongoDB](https://docs.mongodb.com/manual/installation/)
 
 ### Technologies
 
-* NodeJs
-* Typescript
-* Express
-* Nodemon
-* Mongoose
-* Eslint (airbnb-config with another pessoal rules)
-* Prettier
+- NodeJs
+- Typescript
+- Express
+- Nodemon
+- Mongoose
+- Eslint (airbnb-config with another pessoal rules)
+- Prettier
 
 ### Endpoints
 
@@ -61,24 +61,26 @@ Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with
 ![GET](https://img.shields.io/badge/-GET-70BB60?style=for-the-badge)&nbsp;
 /user/:email
 
-![POST](https://img.shields.io/badge/-POST-2991B8?style=for-the-badge)&nbsp; 
+![POST](https://img.shields.io/badge/-POST-2991B8?style=for-the-badge)&nbsp;
 /user
 
-![PUT](https://img.shields.io/badge/-PUT-99768C?style=for-the-badge)&nbsp; 
+![PUT](https://img.shields.io/badge/-PUT-99768C?style=for-the-badge)&nbsp;
 /user/:email
 
-![DELETE](https://img.shields.io/badge/-DELETE-DF807E?style=for-the-badge)&nbsp; 
+![DELETE](https://img.shields.io/badge/-DELETE-DF807E?style=for-the-badge)&nbsp;
 /user/:email
 
 ### Usage
 
 You can use this project as a template for another one, or clone it on your pc using the command:
+
 ```bash
 git clone https://github.com/Lissone/simple-api-template.git
 cd simple_api_template
 ```
 
 Install dependencies using:
+
 ```bash
 yarn
 #or
@@ -88,6 +90,7 @@ npm install
 ### Database configuration
 
 You must create the database before running an api (dataBase).
+
 ```typescript
 // .\src\external\database\dbConfig.ts
 
@@ -105,6 +108,7 @@ const connection = mongoose.connect(DB_URI, {
 ```
 
 Need to add environment variables:
+
 ```bash
 # .\.env
 
@@ -119,6 +123,7 @@ DB_URI=mongodb://localhost
 ```
 
 Run api:
+
 ```bash
 yarn dev
 #or

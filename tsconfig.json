@@ -34,7 +34,7 @@
       "@controllers/*": ["src/adapters/controllers/*"],
       "@repositories/*": ["src/adapters/repositories/*"],
       "@useCases/*": ["./src/useCases/*"],
-      "@shared/*": ["src/shared/*"],
+      "@shared/*": ["src/shared/*"]
     }
   }
 }
