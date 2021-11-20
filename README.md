@@ -1,5 +1,5 @@
 <h1 align="center">
-  Simple api template with MongoDb integration 
+  Simple api template with CRUD
 </h1>
 
 <p align="center">
@@ -12,25 +12,27 @@
 <br />
 <p align="center">
   <img src="https://img.shields.io/static/v1?label=license&message=MIT" alt="License">
-  <img src="https://img.shields.io/github/repo-size/Lissone/simple-api-mongodb" alt="Repo size" />
-  <img src="https://img.shields.io/github/languages/top/Lissone/simple-api-mongodb" alt="Top lang" />
-  <img src="https://img.shields.io/github/stars/Lissone/simple-api-mongodb" alt="Stars repo" />
-  <img src="https://img.shields.io/github/forks/Lissone/simple-api-mongodb" alt="Forks repo" />
-  <img src="https://img.shields.io/github/issues-pr/Lissone/simple-api-mongodb" alt="Pull requests" >
-  <img src="https://img.shields.io/github/last-commit/Lissone/simple-api-mongodb" alt="Last commit" />
+  <img src="https://img.shields.io/github/repo-size/Lissone/simple-api-template" alt="Repo size" />
+  <img src="https://img.shields.io/github/languages/top/Lissone/simple-api-template" alt="Top lang" />
+  <img src="https://img.shields.io/github/stars/Lissone/simple-api-template" alt="Stars repo" />
+  <img src="https://img.shields.io/github/forks/Lissone/simple-api-template" alt="Forks repo" />
+  <img src="https://img.shields.io/github/issues-pr/Lissone/simple-api-template" alt="Pull requests" >
+  <img src="https://img.shields.io/github/last-commit/Lissone/simple-api-template" alt="Last commit" />
 </p>
 
 <p align="center">
-  <a href="https://github.com/Lissone/simple-api-mongodb/issues">Report bug</a>
+  <a href="https://github.com/Lissone/simple-api-template/issues">Report bug</a>
   ·
-  <a href="https://github.com/Lissone/simple-api-mongodb/issues">Request feature</a>
+  <a href="https://github.com/Lissone/simple-api-template/issues">Request feature</a>
 </p>
 
 <br />
 
 ## Description
 
-Template made in Typescript with Express and structured with an architecture based on clean and ddd, to facilitate the creation of new projects and developer productivity, which can be created from this one. Already configured with Typescipt, ESLint, Nodemon and Mongoose, with a pre-built CRUD and fully documented markdown architecture.
+Template made in Typescript with Express and structured with an architecture based on clean and ddd, to facilitate the creation of new projects and developer productivity, which can be created from this one.
+
+Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with a pre-built CRUD and fully documented markdown architecture.
 
 ### Requirements
 
@@ -46,7 +48,8 @@ Template made in Typescript with Express and structured with an architecture bas
 * Express
 * Nodemon
 * Mongoose
-* Eslint
+* Eslint (airbnb-config with another pessoal rules)
+* Prettier
 
 ### Endpoints
 
@@ -71,15 +74,15 @@ Template made in Typescript with Express and structured with an architecture bas
 
 You can use this project as a template for another one, or clone it on your pc using the command:
 ```bash
-git clone https://github.com/Lissone/simple-api-mongodb.git
-cd simple_api_mongodb
+git clone https://github.com/Lissone/simple-api-template.git
+cd simple_api_template
 ```
 
 Install dependencies using:
 ```bash
 yarn
 #or
-npm run
+npm install
 ```
 
 ### Database configuration

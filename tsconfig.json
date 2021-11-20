@@ -7,10 +7,10 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "removeComments": true,
-    "strict": true, // Dependendo do projeto sera necessario desabilitar
+    "strict": false, // Dependendo do projeto sera necessario desabilitar
 
     // ---STRICT---
-    // "noImplicitAny": true,
+    "noImplicitAny": true,
     // "noImplicitThis": true,
     // "strictNullChecks": true,
     // "strictBindCallApply": true,
