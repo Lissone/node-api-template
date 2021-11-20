@@ -1,5 +1,5 @@
-import IUser from '@entities/IUser'
-import { mongoose } from 'src/external/database/dbConfig'
+import { mongoose } from '../dbConfig'
+import { IUser } from '@entities/IUser'
 
 const UserSchema = new mongoose.Schema({
   name: {

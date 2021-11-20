@@ -1,16 +1,17 @@
-import IUserRepository from '@useCases/user/IUserRepository'
 import { Request, Response } from 'express'
 
-export class UserController {
-  repository: IUserRepository
+import { IUserUseCase } from '@useCases/user/IUserUseCase'
 
-  constructor (repository: IUserRepository) {
-    this.repository = repository
+export class UserController {
+  useCase: IUserUseCase
+
+  constructor(useCase: IUserUseCase) {
+    this.useCase = useCase
   }
 
-  async getAll (req: Request, res: Response) : Promise<void> {
+  async getAll(req: Request, res: Response): Promise<void> {
     try {
-      const obj = await this.repository.getAll()
+      const obj = await this.useCase.getAll()
 
       res.json(obj)
     } catch (err) {
@@ -18,14 +19,14 @@ export class UserController {
     }
   }
 
-  async getOne (req: Request, res: Response) : Promise<void> {
+  async getOne(req: Request, res: Response): Promise<void> {
     try {
-      const email = req.params.email
+      const { email } = req.params
 
-      const obj = await this.repository.getOne(email)
+      const obj = await this.useCase.getOne(email)
 
-      if(!obj) {
-        res.status(404).send({ message: 'User not found'})
+      if (!obj) {
+        res.status(404).send({ message: 'User not found' })
         return
       }
 
@@ -35,11 +36,11 @@ export class UserController {
     }
   }
 
-  async post (req: Request, res: Response) : Promise<void> {
+  async post(req: Request, res: Response): Promise<void> {
     try {
-      const body = req.body
+      const { body } = req
 
-      const obj = await await this.repository.post(body)
+      const obj = await await this.useCase.create(body)
 
       res.status(201).send(obj)
     } catch (err) {
@@ -47,20 +48,20 @@ export class UserController {
     }
   }
 
-  async update (req: Request, res: Response) : Promise<void> {
+  async update(req: Request, res: Response): Promise<void> {
     try {
-      const email = req.params.email
+      const { email } = req.params
 
-      const exists = await this.repository.getOne(email)
+      const exists = await this.useCase.getOne(email)
 
-      if(!exists) {
-        res.status(404).send({ message: 'User not found'})
+      if (!exists) {
+        res.status(404).send({ message: 'User not found' })
         return
       }
 
-      const result = await this.repository.update(email, req.body)
+      const result = await this.useCase.update(email, req.body)
 
-      if(!result) {
+      if (!result) {
         res.sendStatus(500)
         return
       }
@@ -71,20 +72,20 @@ export class UserController {
     }
   }
 
-  async delete (req: Request, res: Response) : Promise<void> {
+  async delete(req: Request, res: Response): Promise<void> {
     try {
-      const email = req.params.email
+      const { email } = req.params
 
-      const exists = await this.repository.getOne(email)
+      const exists = await this.useCase.getOne(email)
 
-      if(!exists) {
-        res.status(404).send({ message: 'User not found'})
+      if (!exists) {
+        res.status(404).send({ message: 'User not found' })
         return
       }
 
-      const result = await this.repository.delete(email)
+      const result = await this.useCase.delete(email)
 
-      if(!result) {
+      if (!result) {
         res.sendStatus(500)
         return
       }
@@ -93,6 +94,5 @@ export class UserController {
     } catch (err) {
       res.status(500).json({ message: err.message })
     }
-  } 
+  }
 }
-

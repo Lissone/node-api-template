@@ -1,4 +1,5 @@
 import express from 'express'
+
 import { userRoutes } from './userRoutes'
 
 const apiRoutes = express.Router()

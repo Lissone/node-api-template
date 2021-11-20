@@ -1,7 +1,7 @@
 import express from 'express'
-import bodyParser from 'body-parser'
 import cors from 'cors'
-import { apiRoutes } from 'src/external/routes'
+
+import { apiRoutes } from './routes'
 
 const app = express()
 
@@ -21,9 +21,7 @@ const options: cors.CorsOptions = {
   preflightContinue: true
 }
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use(express.json())
 app.use(cors(options))
 
 app.use(apiRoutes)
