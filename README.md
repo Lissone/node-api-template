@@ -48,9 +48,11 @@ Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with
 - Express
 - Nodemon
 - Mongoose
-- Husky
-- Eslint (airbnb-config with another pessoal rules)
+- Eslint (Airbnb-config with another pessoal rules)
 - Prettier
+- Husky
+  - Lint staged
+  - Pretty quicky
 
 ### Endpoints
 
@@ -86,6 +88,14 @@ Install dependencies using:
 yarn
 #or
 npm install
+```
+
+Enable husky git hooks:
+
+```bash
+yarn husky install
+#or
+npx husky install
 ```
 
 ### Database configuration
