@@ -1,4 +1,5 @@
 import { mongoose } from '../dbConfig'
+
 import { IUser } from '@entities/IUser'
 
 const UserSchema = new mongoose.Schema({

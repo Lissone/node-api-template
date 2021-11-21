@@ -1,7 +1,9 @@
 import { Router } from 'express'
 
 import { UserRepository } from '@repositories/userRepository'
+
 import { UserUseCase } from '@useCases/user/userUseCase'
+
 import { UserController } from '@controllers/userController'
 
 const userRoutes = Router()

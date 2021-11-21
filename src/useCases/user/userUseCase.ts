@@ -1,6 +1,7 @@
-import { IUser } from '@entities/IUser'
 import { IUserRepository } from './IUserRepository'
 import { IUserUseCase } from './IUserUseCase'
+
+import { IUser } from '@entities/IUser'
 
 export class UserUseCase implements IUserUseCase {
   repository: IUserRepository

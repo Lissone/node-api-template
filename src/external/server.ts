@@ -1,8 +1,8 @@
 import 'reflect-metadata'
 import 'src/external/envConfig'
 
-import { connection } from './database/dbConfig'
 import { app } from './app'
+import { connection } from './database/dbConfig'
 
 const port = process.env.PORT || 5000
 

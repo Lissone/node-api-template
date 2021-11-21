@@ -1,6 +1,8 @@
-import { IUser } from '@entities/IUser'
-import { IUserRepository } from '@useCases/user/IUserRepository'
 import UserSchema from '@external/database/entities/UserSchema'
+
+import { IUserRepository } from '@useCases/user/IUserRepository'
+
+import { IUser } from '@entities/IUser'
 
 export class UserRepository implements IUserRepository {
   async getAll(): Promise<IUser[]> {

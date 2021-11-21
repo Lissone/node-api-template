@@ -48,11 +48,13 @@ Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with
 - Express
 - Nodemon
 - Mongoose
-- Eslint (Airbnb-config with another pessoal rules)
-- Prettier
 - Husky
   - Lint staged
   - Pretty quicky
+- Eslint
+  - Airbnb-config with another pessoal rules
+  - Import helpers plugin
+- Prettier
 
 ### Endpoints
 
