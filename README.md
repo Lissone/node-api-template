@@ -55,6 +55,8 @@ Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with
   - Airbnb-config with another pessoal rules
   - Import helpers plugin
 - Prettier
+- Commitlint
+  - Commitizen
 
 ### Endpoints
 
