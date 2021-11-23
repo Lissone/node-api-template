@@ -31,9 +31,10 @@
     "paths": {
       "@external/*": ["src/external/*"],
       "@entities/*": ["src/entities/*"],
-      "@controllers/*": ["src/adapters/controllers/*"],
+      "@middlewares/*": ["src/adapters/middlewares/*"],
       "@repositories/*": ["src/adapters/repositories/*"],
       "@useCases/*": ["./src/useCases/*"],
+      "@controllers/*": ["src/adapters/controllers/*"],
       "@shared/*": ["src/shared/*"]
     }
   }

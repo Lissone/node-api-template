@@ -46,6 +46,7 @@
         "groups": [
           "module",
           "/^@external/",
+          "/^@middlewares/",
           "/^@repositories/",
           "/^@useCases/",
           "/^@controllers/",

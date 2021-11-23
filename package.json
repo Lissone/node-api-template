@@ -9,6 +9,11 @@
   "scripts": {
     "dev": "nodemon -r tsconfig-paths/register src/external/server.ts"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged"
+    }
+  },
   "lint-staged": {
     "src/**/*.ts": [
       "yarn pretty-quick --staged",
