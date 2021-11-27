@@ -19,7 +19,6 @@
     "prettier/prettier": [
       "error",
       {
-        // "parser": "flow",
         "semi": false,
         "singleQuote": true,
         "trailingComma": "none",
