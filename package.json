@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "src/server.ts",
   "description": "Simple CRUD node api template with mongodb",
-  "repository": "https://github.com/Lissone/simple-api-mongodb.git",
+  "repository": "https://github.com/Lissone/simple-node-api-template",
   "author": "Leonardo Dias Lissone Santomero <leonardo.lissonez@gmail.com>",
   "license": "MIT",
   "scripts": {
