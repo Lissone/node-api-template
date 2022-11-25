@@ -1,6 +1,6 @@
 {
   "name": "simple-node-api-template",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "src/external/server.ts",
   "description": "Template made in Typescript with Express and structured with an architecture based on clean and DDD.",
   "repository": "https://github.com/Lissone/simple-node-api-template",
@@ -20,8 +20,6 @@
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
-    "@commitlint/cli": "^15.0.0",
-    "@commitlint/config-conventional": "^15.0.0",
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.11",
     "@types/node": "^14.14.37",
@@ -47,7 +45,6 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "yarn commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "yarn lint-staged"
     }
   },
