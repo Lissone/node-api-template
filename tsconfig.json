@@ -8,33 +8,26 @@
     "rootDir": "./src",
     "removeComments": true,
     "strict": false,
-
-    // ---STRICT---
     "noImplicitAny": true,
-    // "noImplicitThis": true,
-    // "strictNullChecks": true,
-    // "strictBindCallApply": true,
-    // "strictPropertyInitialization": true,
-    // "strictFunctionTypes": false,
-
     "typeRoots": [
-      "./src/@types",
-      "../../node_modules/@types",
+      "./src/@types", 
+      "../../node_modules/@types", 
       "./node_modules/@types"
     ],
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
+    "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
     "paths": {
       "@external/*": ["src/external/*"],
       "@entities/*": ["src/entities/*"],
+      "@controllers/*": ["src/adapters/controllers/*"],
       "@middlewares/*": ["src/adapters/middlewares/*"],
       "@repositories/*": ["src/adapters/repositories/*"],
-      "@useCases/*": ["./src/useCases/*"],
-      "@controllers/*": ["src/adapters/controllers/*"],
+      "@interfaces/*": ["src/interfaces/*"],
       "@shared/*": ["src/shared/*"]
     }
   }

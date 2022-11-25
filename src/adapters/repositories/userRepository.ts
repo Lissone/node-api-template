@@ -6,32 +6,22 @@ import { IUser } from '@entities/IUser'
 
 export class UserRepository implements IUserRepository {
   async getAll(): Promise<IUser[]> {
-    const ret = await UserSchema.find({})
-
-    return ret
+    return UserSchema.find({})
   }
 
   async getOne(email: string): Promise<IUser | null> {
-    const ret = await UserSchema.findOne({ email })
-
-    return ret
+    return UserSchema.findOne({ email })
   }
 
   async create(data: IUser): Promise<IUser> {
-    const ret = await UserSchema.create(data)
-
-    return ret
+    return UserSchema.create(data)
   }
 
-  async update(email: string, data: IUser): Promise<boolean> {
-    const ret = await UserSchema.updateOne({ email }, data)
-
-    return ret !== null
+  async update(email: string, data: IUser): Promise<IUser> {
+    return UserSchema.findOneAndUpdate({ email }, data)
   }
 
-  async delete(email: string): Promise<boolean> {
-    const ret = await UserSchema.deleteOne({ email })
-
-    return ret !== null
+  async delete(email: string): Promise<IUser> {
+    return UserSchema.findOneAndDelete({ email })
   }
 }

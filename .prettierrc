@@ -1,8 +1,10 @@
 {
+  "printWidth": 120,
   "semi": false,
   "singleQuote": true,
   "trailingComma": "none",
   "tabWidth": 2,
-  "arrowParens": "avoid",
-  "endOfLine": "auto"
+  "arrowParens": "always",
+  "endOfLine": "auto",
+  "max-len": ["error", { "code": 120 }]
 }

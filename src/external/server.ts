@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import 'reflect-metadata'
 import 'src/external/envConfig'
 
@@ -10,7 +11,7 @@ connection
   .then(() => {
     console.log('Database connected')
   })
-  .catch(err => console.log('Error connecting to database:', err))
+  .catch((err) => console.log('Error connecting to database:', err))
 
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`)

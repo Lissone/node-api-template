@@ -2,97 +2,80 @@ import { Request, Response } from 'express'
 
 import { IUserUseCase } from '@useCases/user/IUserUseCase'
 
+import { MSG } from '@shared/msg'
+
 export class UserController {
-  useCase: IUserUseCase
+  private readonly useCase: IUserUseCase
 
   constructor(useCase: IUserUseCase) {
     this.useCase = useCase
   }
 
-  async getAll(req: Request, res: Response): Promise<void> {
+  async getAll(req: Request, res: Response) {
     try {
-      const obj = await this.useCase.getAll()
-
-      res.json(obj)
+      const users = await this.useCase.getAll()
+      return res.status(200).json(users)
     } catch (err) {
-      res.status(500).json({ message: err.message })
+      return res.status(500).json({ message: err.message })
     }
   }
 
-  async getOne(req: Request, res: Response): Promise<void> {
+  async getOne(req: Request, res: Response) {
     try {
       const { email } = req.params
 
-      const obj = await this.useCase.getOne(email)
-
-      if (!obj) {
-        res.status(404).send({ message: 'User not found' })
-        return
+      const user = await this.useCase.getOne(email)
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' })
       }
 
-      res.json(obj)
+      return res.status(200).json(user)
     } catch (err) {
-      res.status(500).json({ message: err.message })
+      return res.status(500).json({ message: err.message })
     }
   }
 
-  async post(req: Request, res: Response): Promise<void> {
+  async create(req: Request, res: Response) {
     try {
       const { body } = req
-
-      const obj = await await this.useCase.create(body)
-
-      res.status(201).send(obj)
+      const user = await this.useCase.create(body)
+      return res.status(201).json(user)
     } catch (err) {
-      res.status(500).json({ message: err.message })
+      return res.status(500).json({ message: err.message })
     }
   }
 
-  async update(req: Request, res: Response): Promise<void> {
+  async update(req: Request, res: Response) {
     try {
       const { email } = req.params
 
-      const exists = await this.useCase.getOne(email)
-
-      if (!exists) {
-        res.status(404).send({ message: 'User not found' })
-        return
+      let user = await this.useCase.getOne(email)
+      if (!user) {
+        return res.status(404).json({ message: MSG.USER_NOT_FOUND })
       }
 
-      const result = await this.useCase.update(email, req.body)
+      user = await this.useCase.update(email, req.body)
 
-      if (!result) {
-        res.sendStatus(500)
-        return
-      }
-
-      res.sendStatus(200)
+      return res.status(200).json(user)
     } catch (err) {
-      res.status(500).json({ message: err.message })
+      return res.status(500).json({ message: err.message })
     }
   }
 
-  async delete(req: Request, res: Response): Promise<void> {
+  async delete(req: Request, res: Response) {
     try {
       const { email } = req.params
 
-      const exists = await this.useCase.getOne(email)
-
-      if (!exists) {
-        res.status(404).send({ message: 'User not found' })
-        return
+      const user = await this.useCase.getOne(email)
+      if (!user) {
+        return res.status(404).json({ message: MSG.USER_NOT_FOUND })
       }
 
-      const result = await this.useCase.delete(email)
+      await this.useCase.delete(email)
 
-      if (!result) {
-        res.sendStatus(500)
-        return
-      }
-
-      res.sendStatus(200)
+      return res.sendStatus(200)
     } catch (err) {
-      res.status(500).json({ message: err.message })
+      return res.status(500).json({ message: err.message })
     }
   }
 }

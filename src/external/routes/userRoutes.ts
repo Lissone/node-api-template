@@ -14,7 +14,7 @@ const userController = new UserController(userUseCase)
 
 userRoutes.get('/', (req, res) => userController.getAll(req, res))
 userRoutes.get('/:email', (req, res) => userController.getOne(req, res))
-userRoutes.post('/', (req, res) => userController.post(req, res))
+userRoutes.post('/', (req, res) => userController.create(req, res))
 userRoutes.put('/:email', (req, res) => userController.update(req, res))
 userRoutes.delete('/:email', (req, res) => userController.delete(req, res))
 

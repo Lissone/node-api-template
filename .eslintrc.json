@@ -4,9 +4,9 @@
     "node": true
   },
   "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "airbnb-base",
-    "eslint-config-prettier",
+    "plugin:@typescript-eslint/recommended", 
+    "airbnb-base", 
+    "eslint-config-prettier", 
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
@@ -14,21 +14,30 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "prettier", "eslint-plugin-import-helpers"],
+  "plugins": [
+    "@typescript-eslint", 
+    "prettier", 
+    "eslint-plugin-import-helpers"
+  ],
   "rules": {
     "prettier/prettier": [
       "error",
       {
+        "printWidth": 120,
         "semi": false,
         "singleQuote": true,
         "trailingComma": "none",
         "tabWidth": 2,
-        "arrowParens": "avoid",
-        "endOfLine": "auto"
+        "arrowParens": "always",
+        "endOfLine": "auto",
+        "max-len": ["error", { "code": 120 }]
       }
     ],
     "class-methods-use-this": "off",
     "no-unused-vars": "off",
+    "lines-between-class-members": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
     "import/prefer-default-export": "off",
     "import/no-unresolved": "off",
     "import/order": "off",
@@ -49,9 +58,11 @@
           "/^@repositories/",
           "/^@useCases/",
           "/^@controllers/",
+          "/^@entities/",
+          "/^@shared/",
           ["parent", "sibling", "index"],
           "/^~/",
-          "/^@entities/"
+          "/^@interfaces/"
         ],
         "alphabetize": { "order": "asc", "ignoreCase": true }
       }
