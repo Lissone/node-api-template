@@ -1,21 +1,21 @@
-import { Router } from 'express'
+import { Router } from 'express';
 
-import { UserRepository } from '@repositories/userRepository'
+import { UserController } from '@controllers/userController';
 
-import { UserUseCase } from '@useCases/user/userUseCase'
+import { UserUseCase } from '@useCases/user/userUseCase';
 
-import { UserController } from '@controllers/userController'
+import { UserRepository } from '@repositories/userRepository';
 
-const userRoutes = Router()
+// ---------------------------------------------------- // //
 
-const userRepository = new UserRepository()
-const userUseCase = new UserUseCase(userRepository)
-const userController = new UserController(userUseCase)
+export const userRoutes = Router();
 
-userRoutes.get('/', (req, res) => userController.getAll(req, res))
-userRoutes.get('/:email', (req, res) => userController.getOne(req, res))
-userRoutes.post('/', (req, res) => userController.create(req, res))
-userRoutes.put('/:email', (req, res) => userController.update(req, res))
-userRoutes.delete('/:email', (req, res) => userController.delete(req, res))
+const userRepository = new UserRepository();
+const userUseCase = new UserUseCase(userRepository);
+const userController = new UserController(userUseCase);
 
-export { userRoutes }
+userRoutes.get('/', (req, res) => userController.getAll(req, res));
+userRoutes.get('/:email', (req, res) => userController.getOne(req, res));
+userRoutes.post('/', (req, res) => userController.create(req, res));
+userRoutes.put('/:email', (req, res) => userController.update(req, res));
+userRoutes.delete('/:email', (req, res) => userController.delete(req, res));

@@ -1,27 +1,29 @@
-import { IUser } from '@entities/IUser'
+import { IUser } from '@entities/IUser';
 
-import { mongoose } from '../dbConfig'
+import { mongoose } from '../dbConfig';
 
-const UserSchema = new mongoose.Schema({
+// ---------------------------------------------------- //
+
+const schema = new mongoose.Schema({
   name: {
     type: String,
-    require: true
+    require: true,
   },
   email: {
     type: String,
     unique: true,
     require: true,
-    lowercase: true
+    lowercase: true,
   },
   password: {
     type: String,
     require: true,
-    select: false
+    select: false,
   },
   createdAt: {
     type: Date,
-    default: Date.now
-  }
-})
+    default: Date.now,
+  },
+});
 
-export default mongoose.model<IUser>('User', UserSchema)
+export const UserSchema = mongoose.model<IUser>('User', schema);

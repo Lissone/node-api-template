@@ -1,3 +1,5 @@
 export const MSG = {
-  USER_NOT_FOUND: 'Usuário não encontrado'
-}
+  INTERN_SERVER_ERROR: 'Erro interno do servidor',
+
+  USER_NOT_FOUND: 'Usuário não encontrado',
+};

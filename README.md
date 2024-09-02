@@ -36,9 +36,8 @@ Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with
 
 ### Requirements
 
-- [Npm](https://www.npmjs.com/)
-- [Yarn](https://yarnpkg.com/)
 - [Nodejs](https://nodejs.org/en/)
+- [Npm](https://www.npmjs.com/)
 - [MongoDB](https://docs.mongodb.com/manual/installation/)
 
 ### Technologies
@@ -49,14 +48,10 @@ Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with
 - Nodemon
 - Mongoose
 - Husky
-  - Lint staged
-  - Pretty quicky
 - Eslint
-  - Airbnb-config with another pessoal rules
-  - Import helpers plugin
-- Prettier
+  - @lissone/eslint-config/node
 - Commitlint
-  - Commitizen
+  - config-conventional
 
 ### Endpoints
 
@@ -89,17 +84,7 @@ cd simple-node-api-template
 Install dependencies using:
 
 ```bash
-yarn
-#or
 npm install
-```
-
-Enable husky git hooks:
-
-```bash
-yarn husky install
-#or
-npx husky install
 ```
 
 ### Database configuration
@@ -133,15 +118,13 @@ PORT=5000
 # DATABASE
 DB_USERNAME=sa
 DB_PASSWORD=123456
-DB_NAME=dataBase
+DB_NAME=exampledb
 DB_URI=mongodb://localhost
 ```
 
 Run api:
 
 ```bash
-yarn dev
-#or
 npm run dev
 ```
 

@@ -1,27 +1,29 @@
-import UserSchema from '@external/database/entities/UserSchema'
+import { UserSchema } from '@external/database/entities/UserSchema';
 
-import { IUserRepository } from '@useCases/user/IUserRepository'
+import { IUserRepository } from '@useCases/user/IUserRepository';
 
-import { IUser } from '@entities/IUser'
+import { IUser } from '@entities/IUser';
+
+// ---------------------------------------------------- //
 
 export class UserRepository implements IUserRepository {
-  async getAll(): Promise<IUser[]> {
-    return UserSchema.find({})
+  async getAll() {
+    return UserSchema.find({});
   }
 
-  async getOne(email: string): Promise<IUser | null> {
-    return UserSchema.findOne({ email })
+  async getOne(email: string) {
+    return UserSchema.findOne({ email });
   }
 
-  async create(data: IUser): Promise<IUser> {
-    return UserSchema.create(data)
+  async create(data: IUser) {
+    return UserSchema.create(data);
   }
 
-  async update(email: string, data: IUser): Promise<IUser> {
-    return UserSchema.findOneAndUpdate({ email }, data)
+  async update(email: string, data: IUser) {
+    return UserSchema.findOneAndUpdate({ email }, data);
   }
 
-  async delete(email: string): Promise<IUser> {
-    return UserSchema.findOneAndDelete({ email })
+  async delete(email: string) {
+    return UserSchema.findOneAndDelete({ email });
   }
 }
