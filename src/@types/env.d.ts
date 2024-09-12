@@ -3,9 +3,10 @@ declare namespace NodeJS {
     NODE_ENV: 'development' | 'production' | 'test';
     PORT: number;
 
-    DB_USERNAME: string;
-    DB_PASSWORD: string;
-    DB_NAME: string;
-    DB_URI: string;
+    POSTGRESQL_HOST: string;
+    POSTGRESQL_PORT: number;
+    POSTGRESQL_USERNAME: string;
+    POSTGRESQL_PASSWORD: string;
+    POSTGRESQL_DATABASE: string;
   }
 }

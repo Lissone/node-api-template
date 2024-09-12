@@ -1,29 +1,40 @@
-import { UserSchema } from '@external/database/entities/UserSchema';
+import { DeepPartial, Repository } from 'typeorm';
 
-import { IUserRepository } from '@useCases/user/IUserRepository';
+import { dbDataSource } from '@external/database/dbConfig';
+import { UserEntity } from '@external/database/entities/User';
 
-import { IUser } from '@entities/IUser';
+import { IUserCreateDTO } from '@useCases/IUserDto';
 
 // ---------------------------------------------------- //
 
-export class UserRepository implements IUserRepository {
+export class UserRepository {
+  private repository: Repository<UserEntity>;
+
+  constructor() {
+    this.repository = dbDataSource.getRepository(UserEntity);
+  }
+
+  // -----------------------
+
   async getAll() {
-    return UserSchema.find({});
+    return this.repository.find();
   }
 
-  async getOne(email: string) {
-    return UserSchema.findOne({ email });
+  async getOneByEmail(email: string) {
+    return this.repository.findOneBy({ email });
   }
 
-  async create(data: IUser) {
-    return UserSchema.create(data);
+  async create(dto: IUserCreateDTO) {
+    const user = new UserEntity(dto);
+    return this.repository.save(user);
   }
 
-  async update(email: string, data: IUser) {
-    return UserSchema.findOneAndUpdate({ email }, data);
+  // ! remover email?
+  async update(id: string, dto: DeepPartial<UserEntity>) {
+    return this.repository.save(dto);
   }
 
-  async delete(email: string) {
-    return UserSchema.findOneAndDelete({ email });
+  async delete(id: string) {
+    return this.repository.delete(id);
   }
 }

@@ -21,7 +21,3 @@ app.use(express.json());
 app.use(cors(options));
 
 app.use(apiRoutes);
-
-app.get('/', (_, res) => {
-  res.send({ message: 'API' });
-});

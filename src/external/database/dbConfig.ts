@@ -1,19 +1,22 @@
-import mongoose from 'mongoose';
+import { DataSource } from 'typeorm';
+
+import { UserEntity } from './entities/User';
 
 // ---------------------------------------------------- //
 
-const DB_URI = process.env.DB_URI || 'mongodb://localhost';
+const { POSTGRESQL_HOST, POSTGRESQL_PORT, POSTGRESQL_USERNAME, POSTGRESQL_PASSWORD, POSTGRESQL_DATABASE } = process.env;
 
-export const connection = mongoose.connect(DB_URI, {
-  dbName: process.env.DB_NAME,
-  // user: process.env.DB_USERNAME,
-  // pass: process.env.DB_PASSWORD,
-  useFindAndModify: true,
-  useCreateIndex: true,
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+export const dbDataSource = new DataSource({
+  type: 'postgres',
+  host: POSTGRESQL_HOST,
+  port: POSTGRESQL_PORT || 5432,
+  username: POSTGRESQL_USERNAME,
+  password: POSTGRESQL_PASSWORD,
+  database: POSTGRESQL_DATABASE,
+
+  synchronize: false,
+  logging: false,
+  entities: [UserEntity],
+  subscribers: [],
+  migrations: [],
 });
-
-mongoose.Promise = global.Promise;
-
-export { default as mongoose } from 'mongoose';

@@ -1,40 +1,43 @@
 import { Request, Response } from 'express';
 
-import { IUserUseCase } from '@useCases/user/IUserUseCase';
+import { UserUseCase } from '@useCases/userUseCase';
 
-import { IUser } from '@entities/IUser';
+import { IUser } from '@entities/User';
 
+import { HttpException } from '@shared/exceptions/httpException';
 import { MSG } from '@shared/msg';
 
 // ---------------------------------------------------- //
 
 export class UserController {
-  private readonly useCase: IUserUseCase;
+  private readonly useCase: UserUseCase;
 
-  constructor(useCase: IUserUseCase) {
+  constructor(useCase: UserUseCase) {
     this.useCase = useCase;
   }
+
+  // -----------------------
 
   async getAll(_: Request, res: Response) {
     try {
       const users = await this.useCase.getAll();
       return res.status(200).json(users);
-    } catch {
+    } catch (err) {
+      if (err instanceof HttpException) return res.status(err.status).json({ message: err.message });
       return res.status(500).json({ message: MSG.INTERN_SERVER_ERROR });
     }
   }
 
-  async getOne(req: Request, res: Response) {
+  async getOneByEmail(req: Request, res: Response) {
     try {
       const { email } = req.params;
 
-      const user = await this.useCase.getOne(email);
-      if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-      }
+      // ! TODO: Validate controller inputs
+      const user = await this.useCase.getOneByEmail(email);
 
       return res.status(200).json(user);
-    } catch {
+    } catch (err) {
+      if (err instanceof HttpException) return res.status(err.status).json({ message: err.message });
       return res.status(500).json({ message: MSG.INTERN_SERVER_ERROR });
     }
   }
@@ -43,11 +46,12 @@ export class UserController {
     try {
       const { body } = req;
 
-      // TODO: Validate controller inputs
+      // ! TODO: Validate controller inputs
       const user = await this.useCase.create(body as IUser);
 
       return res.status(201).json(user);
-    } catch {
+    } catch (err) {
+      if (err instanceof HttpException) return res.status(err.status).json({ message: err.message });
       return res.status(500).json({ message: MSG.INTERN_SERVER_ERROR });
     }
   }
@@ -56,16 +60,12 @@ export class UserController {
     try {
       const { email } = req.params;
 
-      let user = await this.useCase.getOne(email);
-      if (!user) {
-        return res.status(404).json({ message: MSG.USER_NOT_FOUND });
-      }
-
-      // TODO: Validate controller inputs
-      user = await this.useCase.update(email, req.body as IUser);
+      // ! TODO: Validate controller inputs
+      const user = await this.useCase.update(email, req.body as IUser);
 
       return res.status(200).json(user);
-    } catch {
+    } catch (err) {
+      if (err instanceof HttpException) return res.status(err.status).json({ message: err.message });
       return res.status(500).json({ message: MSG.INTERN_SERVER_ERROR });
     }
   }
@@ -74,15 +74,12 @@ export class UserController {
     try {
       const { email } = req.params;
 
-      const user = await this.useCase.getOne(email);
-      if (!user) {
-        return res.status(404).json({ message: MSG.USER_NOT_FOUND });
-      }
-
+      // ! TODO: Validate controller inputs
       await this.useCase.delete(email);
 
       return res.sendStatus(200);
-    } catch {
+    } catch (err) {
+      if (err instanceof HttpException) return res.status(err.status).json({ message: err.message });
       return res.status(500).json({ message: MSG.INTERN_SERVER_ERROR });
     }
   }
