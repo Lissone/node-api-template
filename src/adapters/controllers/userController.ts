@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 
-import { UserUseCase } from '@useCases/userUseCase';
+import { CreateUserDTO, UpdateUserDTO, UserEmailParamDTO } from '@external/dtos/UserDTO';
 
-import { User } from '@entities/User';
+import { UserUseCase } from '@useCases/userUseCase';
 
 import { HttpException } from '@shared/exceptions/httpException';
 import { MSG } from '@shared/msg';
@@ -28,11 +28,10 @@ export class UserController {
     }
   }
 
-  async getOneByEmail(req: Request, res: Response) {
+  async getOneByEmail(req: Request<UserEmailParamDTO>, res: Response) {
     try {
       const { email } = req.params;
 
-      // ! TODO: Validate controller inputs
       const user = await this.useCase.getOneByEmail(email);
 
       return res.status(200).json(user);
@@ -42,12 +41,11 @@ export class UserController {
     }
   }
 
-  async create(req: Request, res: Response) {
+  async create(req: Request<object, object, CreateUserDTO>, res: Response) {
     try {
       const { body } = req;
 
-      // ! TODO: Validate controller inputs
-      const user = await this.useCase.create(body as User);
+      const user = await this.useCase.create(body);
 
       return res.status(201).json(user);
     } catch (err) {
@@ -56,12 +54,12 @@ export class UserController {
     }
   }
 
-  async update(req: Request, res: Response) {
+  async update(req: Request<UserEmailParamDTO, object, UpdateUserDTO>, res: Response) {
     try {
-      const { email } = req.params;
+      const { body, params } = req;
+      const { email } = params;
 
-      // ! TODO: Validate controller inputs
-      const user = await this.useCase.update(email, req.body as User);
+      const user = await this.useCase.update(email, body);
 
       return res.status(200).json(user);
     } catch (err) {
@@ -70,11 +68,10 @@ export class UserController {
     }
   }
 
-  async delete(req: Request, res: Response) {
+  async delete(req: Request<UserEmailParamDTO>, res: Response) {
     try {
       const { email } = req.params;
 
-      // ! TODO: Validate controller inputs
       await this.useCase.delete(email);
 
       return res.sendStatus(200);

@@ -1,9 +1,8 @@
 import { Repository } from 'typeorm';
 
-import { UserCreateDTO } from '@adapters/dtos/UserDTO';
-
 import { dbDataSource } from '@external/database/dbConfig';
 import { UserEntity } from '@external/database/entities/User';
+import { CreateUserDTO } from '@external/dtos/UserDTO';
 
 import { User } from '@entities/User';
 
@@ -26,7 +25,7 @@ export class UserRepository {
     return this.repository.findOneBy({ email });
   }
 
-  async create(dto: UserCreateDTO) {
+  async create(dto: CreateUserDTO) {
     const user = new UserEntity(dto);
     return this.repository.save(user);
   }

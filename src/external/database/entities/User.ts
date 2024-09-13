@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { UserCreateDTO } from '@adapters/dtos/UserDTO';
+import { CreateUserDTO } from '@external/dtos/UserDTO';
 
 import { User } from '@entities/User';
 
@@ -34,7 +34,7 @@ export class UserEntity implements User {
 
   // -----------------------
 
-  constructor(dto: UserCreateDTO) {
+  constructor(dto: CreateUserDTO) {
     if (!dto) return;
 
     this.name = dto.name;

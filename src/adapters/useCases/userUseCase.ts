@@ -1,4 +1,4 @@
-import { UserCreateDTO, UserUpdateDTO } from '@adapters/dtos/UserDTO';
+import { CreateUserDTO, UpdateUserDTO } from '@external/dtos/UserDTO';
 
 import { UserRepository } from '@repositories/userRepository';
 
@@ -29,11 +29,11 @@ export class UserUseCase {
     return user;
   }
 
-  async create(user: UserCreateDTO) {
+  async create(user: CreateUserDTO) {
     return this.repository.create(user);
   }
 
-  async update(email: string, dto: UserUpdateDTO) {
+  async update(email: string, dto: UpdateUserDTO) {
     const user = await this.repository.getOneByEmail(email);
     if (!user) {
       throw new HttpException(404, MSG.USER_NOT_FOUND);
@@ -44,11 +44,11 @@ export class UserUseCase {
 
   async delete(email: string) {
     const user = await this.repository.getOneByEmail(email);
-    if (user) {
+    if (!user) {
       throw new HttpException(404, MSG.USER_NOT_FOUND);
     }
 
-    await this.repository.delete(email);
+    await this.repository.delete(user.id);
 
     return true;
   }
