@@ -1,3 +1,13 @@
 {
-  "extends": ["@lissone/eslint-config/node"]
+  "extends": ["@lissone/eslint-config/node"],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@adapters", "./src/adapters"]
+        ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
 }

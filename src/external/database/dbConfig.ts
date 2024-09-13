@@ -14,7 +14,7 @@ export const dbDataSource = new DataSource({
   password: POSTGRESQL_PASSWORD,
   database: POSTGRESQL_DATABASE,
 
-  synchronize: false,
+  synchronize: true,
   logging: false,
   entities: [UserEntity],
   subscribers: [],

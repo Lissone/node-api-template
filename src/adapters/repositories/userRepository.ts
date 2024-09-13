@@ -1,9 +1,11 @@
-import { DeepPartial, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
+
+import { UserCreateDTO } from '@adapters/dtos/UserDTO';
 
 import { dbDataSource } from '@external/database/dbConfig';
 import { UserEntity } from '@external/database/entities/User';
 
-import { IUserCreateDTO } from '@useCases/IUserDto';
+import { User } from '@entities/User';
 
 // ---------------------------------------------------- //
 
@@ -24,13 +26,12 @@ export class UserRepository {
     return this.repository.findOneBy({ email });
   }
 
-  async create(dto: IUserCreateDTO) {
+  async create(dto: UserCreateDTO) {
     const user = new UserEntity(dto);
     return this.repository.save(user);
   }
 
-  // ! remover email?
-  async update(id: string, dto: DeepPartial<UserEntity>) {
+  async update(dto: User) {
     return this.repository.save(dto);
   }
 

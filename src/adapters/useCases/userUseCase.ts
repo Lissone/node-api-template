@@ -1,6 +1,6 @@
-import { UserRepository } from '@repositories/userRepository';
+import { UserCreateDTO, UserUpdateDTO } from '@adapters/dtos/UserDTO';
 
-import { IUser } from '@entities/User';
+import { UserRepository } from '@repositories/userRepository';
 
 import { HttpException } from '@shared/exceptions/httpException';
 import { MSG } from '@shared/msg';
@@ -29,17 +29,17 @@ export class UserUseCase {
     return user;
   }
 
-  async create(user: IUser) {
+  async create(user: UserCreateDTO) {
     return this.repository.create(user);
   }
 
-  async update(email: string, dto: IUser) {
+  async update(email: string, dto: UserUpdateDTO) {
     const user = await this.repository.getOneByEmail(email);
-    if (user) {
+    if (!user) {
       throw new HttpException(404, MSG.USER_NOT_FOUND);
     }
 
-    return this.repository.update(email, dto);
+    return this.repository.update({ ...user, ...dto });
   }
 
   async delete(email: string) {

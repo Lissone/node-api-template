@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { UserUseCase } from '@useCases/userUseCase';
 
-import { IUser } from '@entities/User';
+import { User } from '@entities/User';
 
 import { HttpException } from '@shared/exceptions/httpException';
 import { MSG } from '@shared/msg';
@@ -47,7 +47,7 @@ export class UserController {
       const { body } = req;
 
       // ! TODO: Validate controller inputs
-      const user = await this.useCase.create(body as IUser);
+      const user = await this.useCase.create(body as User);
 
       return res.status(201).json(user);
     } catch (err) {
@@ -61,7 +61,7 @@ export class UserController {
       const { email } = req.params;
 
       // ! TODO: Validate controller inputs
-      const user = await this.useCase.update(email, req.body as IUser);
+      const user = await this.useCase.update(email, req.body as User);
 
       return res.status(200).json(user);
     } catch (err) {

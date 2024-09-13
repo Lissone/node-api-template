@@ -6,14 +6,14 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { IUserCreateDTO } from '@useCases/IUserDto';
+import { UserCreateDTO } from '@adapters/dtos/UserDTO';
 
-import { IUser } from '@entities/User';
+import { User } from '@entities/User';
 
 // ---------------------------------------------------- //
 
 @Entity({ name: 'users' })
-export class UserEntity implements IUser {
+export class UserEntity implements User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -34,7 +34,7 @@ export class UserEntity implements IUser {
 
   // -----------------------
 
-  constructor(dto: IUserCreateDTO) {
+  constructor(dto: UserCreateDTO) {
     if (!dto) return;
 
     this.name = dto.name;

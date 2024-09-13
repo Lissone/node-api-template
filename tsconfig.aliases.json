@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
+      "@adapters/*": ["adapters/*"],
       "@external/*": ["external/*"],
       "@entities/*": ["entities/*"],
       "@controllers/*": ["adapters/controllers/*"],
