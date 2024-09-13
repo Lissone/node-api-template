@@ -6,6 +6,7 @@
   "author": "Leonardo Dias Lissone Santomero <leonardo.lissonez@gmail.com>",
   "main": "src/external/server.ts",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "prepare": "husky",
     "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
