@@ -1,5 +1,5 @@
 <h1 align="center">
-  Simple node api template with CRUD
+  Node Express API Template
 </h1>
 
 <p align="center">
@@ -30,28 +30,29 @@
 
 ## Description
 
-Template made in Typescript with Express and structured with an architecture based on clean and ddd, to facilitate the creation of new projects and developer productivity, which can be created from this one.
+Template made in Typescript with Express and structured with an architecture based on clean and DDD, to facilitate the creation of new projects and developer productivity, which can be created from this one.
 
-Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with a pre-built CRUD and fully documented markdown architecture.
+Already configured with Typescript, ORM, Linter and Husky, with a pre-built CRUD and endpoints listed in the documentation.
 
 ### Requirements
 
 - [Nodejs](https://nodejs.org/en/)
 - [Npm](https://www.npmjs.com/)
-- [MongoDB](https://docs.mongodb.com/manual/installation/)
+- [Docker](https://www.docker.com/)
 
 ### Technologies
 
 - NodeJs
 - Typescript
 - Express
-- Nodemon
-- Mongoose
-- Husky
+- TypeORM
+  - PostgreSQL
+- Yup
 - Eslint
   - @lissone/eslint-config/node
 - Commitlint
   - config-conventional
+- Husky
 
 ### Endpoints
 
@@ -66,7 +67,7 @@ Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with
 ![POST](https://img.shields.io/badge/-POST-2991B8?style=for-the-badge)&nbsp;
 /user
 
-![PUT](https://img.shields.io/badge/-PUT-99768C?style=for-the-badge)&nbsp;
+![PATCH](https://img.shields.io/badge/-PATCH-99768C?style=for-the-badge)&nbsp;
 /user/:email
 
 ![DELETE](https://img.shields.io/badge/-DELETE-DF807E?style=for-the-badge)&nbsp;
@@ -87,39 +88,29 @@ Install dependencies using:
 npm install
 ```
 
-### Database configuration
-
-You must create the database before running an api (dataBase).
-
-```typescript
-// .\src\external\database\dbConfig.ts
-
-const DB_URI = process.env.DB_URI || 'mongodb://localhost'
-
-const connection = mongoose.connect(DB_URI, {
-  dbName: process.env.DB_NAME,
-  // user: process.env.DB_USERNAME,
-  // pass: process.env.DB_PASSWORD,
-  useFindAndModify: true,
-  useCreateIndex: true,
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-```
-
 Need to add environment variables:
 
 ```bash
 # .\.env
 
-# DEFAULT
+# APP
 PORT=5000
 
-# DATABASE
-DB_USERNAME=sa
-DB_PASSWORD=123456
-DB_NAME=exampledb
-DB_URI=mongodb://localhost
+# POSTGRESQL
+POSTGRESQL_HOST=localhost
+POSTGRESQL_PORT=5432
+POSTGRESQL_USERNAME=docker
+POSTGRESQL_PASSWORD=docker
+POSTGRESQL_DATABASE=exampledb
+```
+
+You must have **Docker installed** on your machine to get the container up.
+**Up PostgreSQL service** in a **Docker container** on your local machine using:
+
+```bash
+docker-compose up -d
+# View all running containers
+docker ps
 ```
 
 Run api:
