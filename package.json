@@ -1,8 +1,8 @@
 {
-  "name": "simple-node-api-template",
+  "name": "node-api-template",
   "version": "1.1.2",
   "description": "Template made in Typescript with Express and structured with an architecture based on clean and DDD.",
-  "repository": "https://github.com/Lissone/simple-node-api-template",
+  "repository": "https://github.com/Lissone/node-api-template",
   "author": "Leonardo Dias Lissone Santomero <leonardo.lissonez@gmail.com>",
   "main": "src/external/server.ts",
   "license": "MIT",
