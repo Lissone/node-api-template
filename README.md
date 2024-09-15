@@ -1,5 +1,5 @@
 <h1 align="center">
-  Simple node api template with CRUD
+  Node Express API Template
 </h1>
 
 <p align="center">
@@ -12,51 +12,47 @@
 <br />
 <p align="center">
   <img src="https://img.shields.io/static/v1?label=license&message=MIT" alt="License">
-  <img src="https://img.shields.io/github/repo-size/Lissone/simple-node-api-template" alt="Repo size" />
-  <img src="https://img.shields.io/github/languages/top/Lissone/simple-node-api-template" alt="Top lang" />
-  <img src="https://img.shields.io/github/stars/Lissone/simple-node-api-template" alt="Stars repo" />
-  <img src="https://img.shields.io/github/forks/Lissone/simple-node-api-template" alt="Forks repo" />
-  <img src="https://img.shields.io/github/issues-pr/Lissone/simple-node-api-template" alt="Pull requests" >
-  <img src="https://img.shields.io/github/last-commit/Lissone/simple-node-api-template" alt="Last commit" />
+  <img src="https://img.shields.io/github/repo-size/Lissone/node-api-template" alt="Repo size" />
+  <img src="https://img.shields.io/github/languages/top/Lissone/node-api-template" alt="Top lang" />
+  <img src="https://img.shields.io/github/stars/Lissone/node-api-template" alt="Stars repo" />
+  <img src="https://img.shields.io/github/forks/Lissone/node-api-template" alt="Forks repo" />
+  <img src="https://img.shields.io/github/issues-pr/Lissone/node-api-template" alt="Pull requests" >
+  <img src="https://img.shields.io/github/last-commit/Lissone/node-api-template" alt="Last commit" />
 </p>
 
 <p align="center">
-  <a href="https://github.com/Lissone/simple-node-api-template/issues">Report bug</a>
+  <a href="https://github.com/Lissone/node-api-template/issues">Report bug</a>
   ·
-  <a href="https://github.com/Lissone/simple-node-api-template/issues">Request feature</a>
+  <a href="https://github.com/Lissone/node-api-template/issues">Request feature</a>
 </p>
 
 <br />
 
 ## Description
 
-Template made in Typescript with Express and structured with an architecture based on clean and ddd, to facilitate the creation of new projects and developer productivity, which can be created from this one.
+Template made in Typescript with Express and structured with an architecture based on clean and DDD, to facilitate the creation of new projects and developer productivity, which can be created from this one.
 
-Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with a pre-built CRUD and fully documented markdown architecture.
+Already configured with Typescript, ORM, Linter and Husky, with a pre-built CRUD and endpoints listed in the documentation.
 
 ### Requirements
 
-- [Npm](https://www.npmjs.com/)
-- [Yarn](https://yarnpkg.com/)
 - [Nodejs](https://nodejs.org/en/)
-- [MongoDB](https://docs.mongodb.com/manual/installation/)
+- [Npm](https://www.npmjs.com/)
+- [Docker](https://www.docker.com/)
 
 ### Technologies
 
 - NodeJs
 - Typescript
 - Express
-- Nodemon
-- Mongoose
-- Husky
-  - Lint staged
-  - Pretty quicky
+- TypeORM
+  - PostgreSQL
+- Yup
 - Eslint
-  - Airbnb-config with another pessoal rules
-  - Import helpers plugin
-- Prettier
+  - @lissone/eslint-config/node
 - Commitlint
-  - Commitizen
+  - config-conventional
+- Husky
 
 ### Endpoints
 
@@ -71,7 +67,7 @@ Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with
 ![POST](https://img.shields.io/badge/-POST-2991B8?style=for-the-badge)&nbsp;
 /user
 
-![PUT](https://img.shields.io/badge/-PUT-99768C?style=for-the-badge)&nbsp;
+![PATCH](https://img.shields.io/badge/-PATCH-99768C?style=for-the-badge)&nbsp;
 /user/:email
 
 ![DELETE](https://img.shields.io/badge/-DELETE-DF807E?style=for-the-badge)&nbsp;
@@ -82,44 +78,14 @@ Already configured with Typescript, ESLint, Prettier, Nodemon and Mongoose, with
 You can use this project as a template for another one, or clone it on your pc using the command:
 
 ```bash
-git clone https://github.com/Lissone/simple-node-api-template.git
-cd simple-node-api-template
+git clone https://github.com/Lissone/node-api-template.git
+cd node-api-template
 ```
 
 Install dependencies using:
 
 ```bash
-yarn
-#or
 npm install
-```
-
-Enable husky git hooks:
-
-```bash
-yarn husky install
-#or
-npx husky install
-```
-
-### Database configuration
-
-You must create the database before running an api (dataBase).
-
-```typescript
-// .\src\external\database\dbConfig.ts
-
-const DB_URI = process.env.DB_URI || 'mongodb://localhost'
-
-const connection = mongoose.connect(DB_URI, {
-  dbName: process.env.DB_NAME,
-  // user: process.env.DB_USERNAME,
-  // pass: process.env.DB_PASSWORD,
-  useFindAndModify: true,
-  useCreateIndex: true,
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
 ```
 
 Need to add environment variables:
@@ -127,21 +93,29 @@ Need to add environment variables:
 ```bash
 # .\.env
 
-# DEFAULT
+# APP
 PORT=5000
 
-# DATABASE
-DB_USERNAME=sa
-DB_PASSWORD=123456
-DB_NAME=dataBase
-DB_URI=mongodb://localhost
+# POSTGRESQL
+POSTGRESQL_HOST=localhost
+POSTGRESQL_PORT=5432
+POSTGRESQL_USERNAME=docker
+POSTGRESQL_PASSWORD=docker
+POSTGRESQL_DATABASE=exampledb
+```
+
+You must have **Docker installed** on your machine to get the container up.
+**Up PostgreSQL service** in a **Docker container** on your local machine using:
+
+```bash
+docker-compose up -d
+# View all running containers
+docker ps
 ```
 
 Run api:
 
 ```bash
-yarn dev
-#or
 npm run dev
 ```
 

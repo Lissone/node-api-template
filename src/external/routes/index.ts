@@ -1,9 +1,10 @@
-import express from 'express'
+import { Router } from 'express';
 
-import { userRoutes } from './userRoutes'
+import { userRoutes } from './userRoutes';
 
-const apiRoutes = express.Router()
+// ---------------------------------------------------- //
 
-apiRoutes.use('/api/v1/user', userRoutes)
+export const apiRoutes = Router();
 
-export { apiRoutes }
+apiRoutes.use('/api/v1/user', userRoutes);
+

@@ -1,4 +1,20 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/usr/bin/env bash
 
-yarn lint-staged
+# -- lint changed files -- #
+STAGED_FILES=`git diff --cached --name-only --diff-filter=ACMR | egrep '\.(ts)$' || true`
+
+if [ -z "$STAGED_FILES" ]; then
+  exit 0
+fi
+
+echo "... Running Linter ..."
+./node_modules/.bin/eslint $STAGED_FILES --quiet --ignore-path .gitignore
+LINTER_EXIT_CODE=$?
+
+# check linter exit code
+if [ $LINTER_EXIT_CODE -ne 0 ]; then
+  echo "!! Fix lint errors before commit !!"
+  exit 1
+fi
+
+exit 0

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# https://gist.github.com/mariusGundersen/8a4383f74a46ababc1de
+# https://www.liquidlight.co.uk/blog/using-a-post-merge-git-hook-to-clean-up-old-branches/
+
+# -- run npm install -- #
+
+CHANGED_FILES="$(git diff-tree -r --name-only --no-commit-id HEAD@{1} HEAD)"
+CHANGED_PACKAGE_JSON=`echo $CHANGED_FILES | grep "package.json" || true`
+
+#echo '------------------------------'
+#echo 'post-merge (debug)'
+#echo '$CHANGED_FILES='$CHANGED_FILES
+#echo '$CHANGED_PACKAGE_JSON='$CHANGED_PACKAGE_JSON
+#echo '------------------------------'
+
+if [ -z "$CHANGED_PACKAGE_JSON" ]; then
+  exit 0
+fi
+
+echo "(post-merge)"
+echo "* changes detected in package.json"
+echo "* running: npm install && npm prune"
+
+npm install && npm prune
+
+exit 0

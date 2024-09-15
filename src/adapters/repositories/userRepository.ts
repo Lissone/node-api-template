@@ -1,27 +1,40 @@
-import UserSchema from '@external/database/entities/UserSchema'
+import { Repository } from 'typeorm';
 
-import { IUserRepository } from '@useCases/user/IUserRepository'
+import { dbDataSource } from '@external/database/dbConfig';
+import { UserEntity } from '@external/database/entities/User';
+import { CreateUserDTO } from '@external/dtos/UserDTO';
 
-import { IUser } from '@entities/IUser'
+import { User } from '@entities/User';
 
-export class UserRepository implements IUserRepository {
-  async getAll(): Promise<IUser[]> {
-    return UserSchema.find({})
+// ---------------------------------------------------- //
+
+export class UserRepository {
+  private repository: Repository<UserEntity>;
+
+  constructor() {
+    this.repository = dbDataSource.getRepository(UserEntity);
   }
 
-  async getOne(email: string): Promise<IUser | null> {
-    return UserSchema.findOne({ email })
+  // -----------------------
+
+  async getAll() {
+    return this.repository.find();
   }
 
-  async create(data: IUser): Promise<IUser> {
-    return UserSchema.create(data)
+  async getOneByEmail(email: string) {
+    return this.repository.findOneBy({ email });
   }
 
-  async update(email: string, data: IUser): Promise<IUser> {
-    return UserSchema.findOneAndUpdate({ email }, data)
+  async create(dto: CreateUserDTO) {
+    const user = new UserEntity(dto);
+    return this.repository.save(user);
   }
 
-  async delete(email: string): Promise<IUser> {
-    return UserSchema.findOneAndDelete({ email })
+  async update(dto: User) {
+    return this.repository.save(dto);
+  }
+
+  async delete(id: string) {
+    return this.repository.delete(id);
   }
 }

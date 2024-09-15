@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@adapters/*": ["adapters/*"],
+      "@external/*": ["external/*"],
+      "@entities/*": ["entities/*"],
+      "@controllers/*": ["adapters/controllers/*"],
+      "@middlewares/*": ["adapters/middlewares/*"],
+      "@repositories/*": ["adapters/repositories/*"],
+      "@useCases/*": ["adapters/useCases/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@shared/*": ["shared/*"]
+    }
+  }
+}

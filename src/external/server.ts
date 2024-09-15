@@ -1,18 +1,20 @@
+/* eslint-disable unicorn/prefer-top-level-await */
 /* eslint-disable no-console */
-import 'reflect-metadata'
-import 'src/external/envConfig'
+import 'reflect-metadata';
 
-import { app } from './app'
-import { connection } from './database/dbConfig'
+import '@external/envConfig';
 
-const port = process.env.PORT || 5000
+import { app } from './app';
+import { dbDataSource } from './database/dbConfig';
 
-connection
-  .then(() => {
-    console.log('Database connected')
-  })
-  .catch((err) => console.log('Error connecting to database:', err))
+// ---------------------------------------------------- //
 
-app.listen(port, () => {
-  console.log(`Listening on port: ${port}`)
-})
+const PORT = process.env.PORT || 5000;
+
+dbDataSource.initialize()
+  .then(() => console.log('Data Source has been initialized!'))
+  .catch((err) => console.log(err));
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port: ${PORT}`);
+});

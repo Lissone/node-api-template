@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# -- commitlint -- #
+# verify commit message
+
+npx commitlint --edit $1

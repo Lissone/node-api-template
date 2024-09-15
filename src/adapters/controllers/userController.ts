@@ -1,81 +1,83 @@
-import { Request, Response } from 'express'
+import { Request, Response } from 'express';
 
-import { IUserUseCase } from '@useCases/user/IUserUseCase'
+import { CreateUserDTO, UpdateUserDTO, UserEmailParamDTO } from '@external/dtos/UserDTO';
 
-import { MSG } from '@shared/msg'
+import { UserUseCase } from '@useCases/userUseCase';
+
+import { HttpException } from '@shared/exceptions/httpException';
+import { MSG } from '@shared/msg';
+
+// ---------------------------------------------------- //
 
 export class UserController {
-  private readonly useCase: IUserUseCase
+  private readonly useCase: UserUseCase;
 
-  constructor(useCase: IUserUseCase) {
-    this.useCase = useCase
+  constructor(useCase: UserUseCase) {
+    this.useCase = useCase;
   }
 
-  async getAll(req: Request, res: Response) {
+  // -----------------------
+
+  async getAll(_: Request, res: Response) {
     try {
-      const users = await this.useCase.getAll()
-      return res.status(200).json(users)
+      const users = await this.useCase.getAll();
+      return res.status(200).json(users);
     } catch (err) {
-      return res.status(500).json({ message: err.message })
+      if (err instanceof HttpException) return res.status(err.status).json({ message: err.message });
+      return res.status(500).json({ message: MSG.INTERN_SERVER_ERROR });
     }
   }
 
-  async getOne(req: Request, res: Response) {
+  async getOneByEmail(req: Request<UserEmailParamDTO>, res: Response) {
     try {
-      const { email } = req.params
+      const { email } = req.params;
 
-      const user = await this.useCase.getOne(email)
-      if (!user) {
-        return res.status(404).json({ message: 'User not found' })
-      }
+      const user = await this.useCase.getOneByEmail(email);
 
-      return res.status(200).json(user)
+      return res.status(200).json(user);
     } catch (err) {
-      return res.status(500).json({ message: err.message })
+      if (err instanceof HttpException) return res.status(err.status).json({ message: err.message });
+      return res.status(500).json({ message: MSG.INTERN_SERVER_ERROR });
     }
   }
 
-  async create(req: Request, res: Response) {
+  async create(req: Request<object, object, CreateUserDTO>, res: Response) {
     try {
-      const { body } = req
-      const user = await this.useCase.create(body)
-      return res.status(201).json(user)
+      const { body } = req;
+
+      const user = await this.useCase.create(body);
+
+      return res.status(201).json(user);
     } catch (err) {
-      return res.status(500).json({ message: err.message })
+      if (err instanceof HttpException) return res.status(err.status).json({ message: err.message });
+      return res.status(500).json({ message: MSG.INTERN_SERVER_ERROR });
     }
   }
 
-  async update(req: Request, res: Response) {
+  async update(req: Request<UserEmailParamDTO, object, UpdateUserDTO>, res: Response) {
     try {
-      const { email } = req.params
+      const { body, params } = req;
+      const { email } = params;
 
-      let user = await this.useCase.getOne(email)
-      if (!user) {
-        return res.status(404).json({ message: MSG.USER_NOT_FOUND })
-      }
+      const user = await this.useCase.update(email, body);
 
-      user = await this.useCase.update(email, req.body)
-
-      return res.status(200).json(user)
+      return res.status(200).json(user);
     } catch (err) {
-      return res.status(500).json({ message: err.message })
+      if (err instanceof HttpException) return res.status(err.status).json({ message: err.message });
+      return res.status(500).json({ message: MSG.INTERN_SERVER_ERROR });
     }
   }
 
-  async delete(req: Request, res: Response) {
+  async delete(req: Request<UserEmailParamDTO>, res: Response) {
     try {
-      const { email } = req.params
+      const { email } = req.params;
 
-      const user = await this.useCase.getOne(email)
-      if (!user) {
-        return res.status(404).json({ message: MSG.USER_NOT_FOUND })
-      }
+      await this.useCase.delete(email);
 
-      await this.useCase.delete(email)
-
-      return res.sendStatus(200)
+      return res.sendStatus(200);
     } catch (err) {
-      return res.status(500).json({ message: err.message })
+      if (err instanceof HttpException) return res.status(err.status).json({ message: err.message });
+      return res.status(500).json({ message: MSG.INTERN_SERVER_ERROR });
     }
   }
 }

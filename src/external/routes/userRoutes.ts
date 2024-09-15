@@ -1,21 +1,44 @@
-import { Router } from 'express'
+import { Request, Response, Router } from 'express';
 
-import { UserRepository } from '@repositories/userRepository'
+import { UpdateUserDTO, UserEmailParamDTO, createUserBodySchema, updateUserBodySchema, userEmailParamSchema } from '@external/dtos/UserDTO';
+import { validateDTO } from '@external/middlewares/validateDTO';
 
-import { UserUseCase } from '@useCases/user/userUseCase'
+import { UserController } from '@controllers/userController';
 
-import { UserController } from '@controllers/userController'
+import { UserUseCase } from '@useCases/userUseCase';
 
-const userRoutes = Router()
+import { UserRepository } from '@repositories/userRepository';
 
-const userRepository = new UserRepository()
-const userUseCase = new UserUseCase(userRepository)
-const userController = new UserController(userUseCase)
+// ---------------------------------------------------- //
 
-userRoutes.get('/', (req, res) => userController.getAll(req, res))
-userRoutes.get('/:email', (req, res) => userController.getOne(req, res))
-userRoutes.post('/', (req, res) => userController.create(req, res))
-userRoutes.put('/:email', (req, res) => userController.update(req, res))
-userRoutes.delete('/:email', (req, res) => userController.delete(req, res))
+export const userRoutes = Router();
 
-export { userRoutes }
+const userRepository = new UserRepository();
+const userUseCase = new UserUseCase(userRepository);
+const userController = new UserController(userUseCase);
+
+userRoutes.get('/', (req, res) => userController.getAll(req, res));
+userRoutes.get(
+  '/:email',
+  validateDTO(userEmailParamSchema, 'params'),
+  (req: Request<UserEmailParamDTO>, res) => userController.getOneByEmail(req, res),
+);
+userRoutes.post(
+  '/',
+  validateDTO(createUserBodySchema, 'body'),
+  (req, res) => userController.create(req, res),
+);
+userRoutes.patch(
+  '/:email',
+  validateDTO(userEmailParamSchema, 'params'),
+  validateDTO(updateUserBodySchema, 'body'),
+  (
+    req: Request<UserEmailParamDTO, object, UpdateUserDTO>,
+    res: Response,
+  ) => userController.update(req, res),
+);
+userRoutes.delete(
+  '/:email',
+  validateDTO(userEmailParamSchema, 'params'),
+  (req: Request<UserEmailParamDTO>, res) => userController.delete(req, res),
+);
